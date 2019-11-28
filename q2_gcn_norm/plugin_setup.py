@@ -1,4 +1,4 @@
-from qiime2.plugin import (Plugin, Str, Choices)
+from qiime2.plugin import (Plugin, Str, Choices, Properties)
 from q2_types.feature_table import FeatureTable, Frequency
 from q2_types.feature_data import FeatureData, Taxonomy
 
@@ -27,7 +27,7 @@ plugin.methods.register_function(
   
     parameters={'database': Str % Choices(databases)},
 
-    outputs=[('gcn_norm_table', FeatureTable[???])],
+    outputs=[('gcn_norm_table', FeatureTable[Frequency] % Properties('copy_number_normalized'))],
   
     input_descriptions={
         'table': ('a QIIME2 artifact of type FeatureTable[Frequency]'),
