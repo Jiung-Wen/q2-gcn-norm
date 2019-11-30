@@ -1,6 +1,7 @@
 from qiime2.plugin import (Plugin, Str, Choices, Properties)
 from q2_types.feature_table import FeatureTable, Frequency
 from q2_types.feature_data import FeatureData, Taxonomy
+from q2_gcn_norm._copy_num_normalize import copy_num_normalize
 
 plugin = Plugin(
     name='gcn-norm',
@@ -14,7 +15,6 @@ plugin = Plugin(
                  'will try to match a higher rank until the highest rank is met. All the unassigned'
                  'sequences are assumed to have one GCN.'),
     short_description='This plugin normalizes sequences by 16S rRNA gene copy number (GCN).',
-    citations=[citations['???']]
 )
 
 databases = ['silva', 'greengenes']
