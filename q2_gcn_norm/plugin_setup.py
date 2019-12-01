@@ -1,4 +1,4 @@
-from qiime2.plugin import (Plugin, Str, Choices, Properties)
+from qiime2.plugin import (Plugin, Properties)
 from q2_types.feature_table import FeatureTable, Frequency
 from q2_types.feature_data import FeatureData, Taxonomy
 from q2_gcn_norm._copy_num_normalize import copy_num_normalize
@@ -17,25 +17,19 @@ plugin = Plugin(
     short_description='This plugin normalizes sequences by 16S rRNA gene copy number (GCN).',
 )
 
-databases = ['silva', 'greengenes']
-
 plugin.methods.register_function(
     function=copy_num_normalize,
   
     inputs={'table': FeatureTable[Frequency],
             'taxonomy': FeatureData[Taxonomy]},
   
-    parameters={'database': Str % Choices(databases)},
+    parameters={},
 
     outputs=[('gcn_norm_table', FeatureTable[Frequency] % Properties('copy_number_normalized'))],
   
     input_descriptions={
         'table': ('a QIIME2 artifact of type FeatureTable[Frequency]'),
         'taxonomy': ('a QIIME2 artifact of type FeatureData[Taxonomy]')
-    },
-
-    parameter_descriptions={
-        'database': ('Database used for sequence taxonomic annotation.')
     },
           
     output_descriptions={
