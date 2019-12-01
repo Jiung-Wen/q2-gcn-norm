@@ -33,8 +33,8 @@ plugin.methods.register_function(
     },
           
     output_descriptions={
-        'gcn_norm_table': ('a FeatureTable with its frequency normalized'
-                           'by each taxon\'s 16S gene copy number')
+        'gcn_norm_table': ('a FeatureTable with its frequency normalized '
+                           'by each taxon\'s 16S rRNA gene copy number')
     },
   
     name='16S gene copy number normalization',
