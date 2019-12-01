@@ -5,8 +5,7 @@ import numpy as np
 
 
 def copy_num_normalize(table: pd.DataFrame,
-                       taxonomy: pd.DataFrame,
-                       database: str) -> pd.DataFrame:
+                       taxonomy: pd.DataFrame) -> pd.DataFrame:
 
     dir_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -14,17 +13,21 @@ def copy_num_normalize(table: pd.DataFrame,
 
     taxon2copynum = dict(zip(df_rrndb['name'],df_rrndb['mean']))
 
+    # Check taxonomy format
+    for index, taxon in enumerate(taxonomy['Taxon']):
+        if 'D_0__' in taxon:
+            database = 'silva'
+            ranks = ['D_6__', 'D_5__', 'D_4__', 'D_3__', 'D_2__', 'D_1__', 'D_0__']
+            break
 
-    if database=='silva':
-        ranks = ['D_6__', 'D_5__', 'D_4__', 'D_3__', 'D_2__', 'D_1__', 'D_0__']
-        
-    if database=='greengenes':
-        ranks = ['; s__', '; g__', '; f__', '; o__', '; c__', '; p__', 'k__']
-
-
-    d = {'taxon': taxonomy['Taxon'], 'copy_number': [1]*len(taxonomy['Taxon'])}
-    df_copy_num = pd.DataFrame(d)
-
+        elif '; p__' in taxon:
+            database = 'greengenes'
+            ranks = ['; s__', '; g__', '; f__', '; o__', '; c__', '; p__', 'k__']
+            break
+            
+        else:
+            if (index+1)==len(taxonomy['Taxon']):
+                raise ValueError('The input taxonomy format is currently not supported.')
 
     for index, taxon in enumerate(df_copy_num['taxon']): # loop all the taxa
         if 'Unassigned' in taxon:
