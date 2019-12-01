@@ -70,7 +70,7 @@ class GcnNormTests(TestPluginBase):
         data_taxonomy = {'Feature ID': feature_id,'Taxon': taxa, 'Confidence': confidence}
         df_taxa = pd.DataFrame(data_taxonomy)
         df_taxa.set_index('Feature ID', inplace=True)
-        taxonomy_silva = Artifact.import_data('FeatureData[Taxonomy]', df_taxa)
+        taxonomy_gg = Artifact.import_data('FeatureData[Taxonomy]', df_taxa)
 
         df_table = pd.DataFrame([[10,10,10,10,10,10],
                                  [ 5, 5, 5, 0, 0, 0]],
@@ -78,7 +78,7 @@ class GcnNormTests(TestPluginBase):
                                  columns=feature_id)
         table = Artifact.import_data('FeatureTable[Frequency]', df_table)
 
-        table_gcn_normalized = gcn_norm.actions.copy_num_normalize(table, taxonomy_silva ,database='greengenes')
+        table_gcn_normalized = gcn_norm.actions.copy_num_normalize(table, taxonomy_gg ,database='greengenes')
 
         df_table_normalized = table_gcn_normalized.gcn_norm_table.view(pd.DataFrame)
 
@@ -86,6 +86,39 @@ class GcnNormTests(TestPluginBase):
         df_true = df_table/copy_num
 
         pdt.assert_frame_equal(df_table_normalized, df_true)
+        
+    def test_gcn_norm_other_taxonomy_format(self):
+        feature_id = ['taxon_1', 'taxon_2', 'taxon_3', 'taxon_4', 'taxon_5', 'taxon_6']
+        # no space after semicolon
+        taxa = ['k__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;'\
+                'f__Lactobacillaceae;g__Lactobacillus;s__salivarius',
+
+                'k__Bacteria;p__Firmicutes;c__Bacilli;o__Lactobacillales;'\
+                'f__Lactobacillaceae;g__Lactobacillus;s__',
+
+                'k__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;'\
+                'f__Lachnospiraceae;g__Shuttleworthia;s__satelles',
+
+                'k__Bacteria;p__Firmicutes;c__Clostridia;o__Clostridiales;f__;g__;s__',
+
+                'k__Bacteria;p__Proteobacteria;c__Alphaproteobacteria;o__;f__;g__;s__',
+
+                'Unassigned'
+                ]
+        confidence = [0.99]*len(feature_id)
+        data_taxonomy = {'Feature ID': feature_id,'Taxon': taxa, 'Confidence': confidence}
+        df_taxa = pd.DataFrame(data_taxonomy)
+        df_taxa.set_index('Feature ID', inplace=True)
+        taxonomy_unknown = Artifact.import_data('FeatureData[Taxonomy]', df_taxa)
+
+        df_table = pd.DataFrame([[10,10,10,10,10,10],
+                                 [ 5, 5, 5, 0, 0, 0]],
+                                 index=['sample A','sample B'],
+                                 columns=feature_id)
+        table = Artifact.import_data('FeatureTable[Frequency]', df_table)
+
+        with self.assertRaises(ValueError):
+            gcn_norm.actions.copy_num_normalize(table, taxonomy_unknown)
 
 
 if __name__ == '__main__':
