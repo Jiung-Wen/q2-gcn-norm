@@ -1,0 +1,38 @@
+package:
+  name: q2-gcn-norm
+  version: 2019.11
+
+source:
+  path: ../
+
+build:
+    noarch: generic
+
+requirements:
+  host:
+    - python 3.6
+    - setuptools
+
+  run:
+    - python 3.6
+    - pandas
+    - qiime2
+    - q2-types
+
+test:
+  imports:
+    - q2_gcn_norm
+    - qiime2.plugins.gcn_norm
+
+about:
+  home: https://github.com/Jiung-Wen/q2-gcn-norm
+  license: BSD-3-Clause
+  license_family: BSD
+  summary: QIIME2 plugin for normalizing sequences by 16S rRNA gene copy number based on rrnDB database
+  description: |
+    This QIIME 2 plugin normalizes sequences by 16S rRNA gene copy number (GCN) 
+    based on rrnDB database (version 5.6). The plugin matches the taxa of sequences 
+    with the rrnDB-5.6_pantaxa_stats_NCBI.tsv file, starting from the lowest taxonomic rank. 
+    If a match is found, the mean of GCN for the taxon is assigned; if not, the plugin 
+    will try to match a higher rank until the highest rank is met. All the unassigned 
+    sequences are assumed to have one GCN.
