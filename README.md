@@ -38,7 +38,7 @@ qiime gcn-norm copy-num-normalize \
 ```
 The outputs would be an artifact  of type ```FeatureTable[Frequency] % Properties('copy_number_normalized')```.
 
-Note that the taxonomy format should be like Greengenes' ```k__foo; p__bar; c__ ... ``` or SILVA's ```D_0__foo;D_1__bar;D_2__ ...```. Other formats are currently unsupported and will raise error.
+Note that the taxonomy format should be like Greengenes' ```k__foo; p__bar; c__ ... ``` or SILVA's ```D_0__foo;D_1__bar;D_2__ ...```. Other formats, e.g. ```k__foo;p__bar;c__ ...```(no space after semicolon) or ```k__foo|p__bar|c__ ...```(use pipe as delimiter), are currently unsupported and will raise error.
 
 Now you can perform analyses as you usually do in QIIME 2 with the GCN-normalized FeatureTable. For example, let's do the ANCOM analysis with the new FeatureTable and compare the result from this example with that from "Moving Pictures" tutorial.
 
