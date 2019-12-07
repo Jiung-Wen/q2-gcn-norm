@@ -12,7 +12,10 @@ setup(
     entry_points={
         'qiime2.plugins':['q2-gcn-norm=q2_gcn_norm.plugin_setup:plugin']
     },
-    # package_data={'q2_gcn_norm': ['rrnDB-5.6_pantaxa_stats_NCBI.tsv']},
+    package_data={'q2_gcn_norm': [
+        'rrnDB-5.6_pantaxa_stats_NCBI.tsv',
+        'tests/*'
+    ]},
     zip_safe=False,
 
 )

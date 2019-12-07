@@ -12,6 +12,9 @@ def copy_num_normalize(table: pd.DataFrame,
 
     taxon2copynum = dict(zip(df_rrndb['name'],df_rrndb['mean']))
 
+    d = {'taxon': taxonomy['Taxon'], 'copy_number': [1]*len(taxonomy['Taxon'])}
+    df_copy_num = pd.DataFrame(d)
+    
     # Check taxonomy format
     for index, taxon in enumerate(taxonomy['Taxon']):
         if 'D_0__' in taxon:
