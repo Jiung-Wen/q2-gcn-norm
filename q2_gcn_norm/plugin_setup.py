@@ -5,7 +5,7 @@ from q2_gcn_norm._copy_num_normalize import copy_num_normalize
 
 plugin = Plugin(
     name='gcn-norm',
-    version='2019.11',
+    version='2019.11.1',
     website='https://github.com/Jiung-Wen/q2-gcn-norm',
     package='q2_gcn_norm',
     description=('This QIIME 2 plugin normalizes sequences by 16S rRNA gene copy number (GCN) '

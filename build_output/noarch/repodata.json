@@ -1,0 +1,29 @@
+{
+  "info": {
+    "subdir": "noarch"
+  },
+  "packages": {
+    "q2-gcn-norm-2019.11.1-py36_0.tar.bz2": {
+      "build": "py36_0",
+      "build_number": 0,
+      "depends": [
+        "pandas",
+        "python 3.6.*",
+        "q2-types",
+        "qiime2"
+      ],
+      "license": "BSD-3-Clause",
+      "license_family": "BSD",
+      "md5": "fb96defe9787c04bec69c14d765fd73a",
+      "name": "q2-gcn-norm",
+      "noarch": "generic",
+      "sha256": "b2a2711bbb29789d16bd3fb0c7cd26a008c1e1bdc9290d105e1a3ad3776ff8f8",
+      "size": 92551,
+      "subdir": "noarch",
+      "timestamp": 1575772892411,
+      "version": "2019.11.1"
+    }
+  },
+  "removed": [],
+  "repodata_version": 1
+}

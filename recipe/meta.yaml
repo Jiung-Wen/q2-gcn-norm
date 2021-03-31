@@ -1,6 +1,6 @@
 package:
   name: q2-gcn-norm
-  version: 2019.11
+  version: 2019.11.1
 
 source:
   path: ../

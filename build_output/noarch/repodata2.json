@@ -1,0 +1,11 @@
+{
+  "info": {
+    "subdir": "noarch"
+  },
+  "packages": [],
+  "removed": [
+    "q2-gcn-norm-2019.11.1-py36_0.tar.bz2"
+  ],
+  "repodata_version": 2,
+  "revoked": []
+}
