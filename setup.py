@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="q2-gcn-norm",
-    version="2019.11.1",
+    version="2021.04",
     packages=find_packages(),
     author="Jiung-Wen Chen",
     author_email="jiung-wen.chen@wustl.edu",
@@ -13,7 +13,7 @@ setup(
         'qiime2.plugins':['q2-gcn-norm=q2_gcn_norm.plugin_setup:plugin']
     },
     package_data={'q2_gcn_norm': [
-        'rrnDB-5.6_pantaxa_stats_NCBI.tsv',
+        'rrnDB-5.7_pantaxa_stats_NCBI.tsv',
         'tests/*'
     ]},
     zip_safe=False,

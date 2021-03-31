@@ -8,7 +8,7 @@ def copy_num_normalize(table: pd.DataFrame,
 
     dir_path = os.path.dirname(os.path.abspath(__file__))
 
-    df_rrndb = pd.read_csv(dir_path+'/rrnDB-5.6_pantaxa_stats_NCBI.tsv', sep='\t')
+    df_rrndb = pd.read_csv(dir_path+'/rrnDB-5.7_pantaxa_stats_NCBI.tsv', sep='\t')
 
     taxon2copynum = dict(zip(df_rrndb['name'],df_rrndb['mean']))
 
