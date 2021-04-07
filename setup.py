@@ -14,7 +14,8 @@ setup(
     },
     package_data={'q2_gcn_norm': [
         'rrnDB-5.7_pantaxa_stats_NCBI.tsv',
-        'tests/*'
+        'tests/*',
+        'citations.bib'
     ]},
     zip_safe=False,
 
