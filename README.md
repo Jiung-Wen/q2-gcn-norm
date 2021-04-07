@@ -2,15 +2,15 @@
 QIIME 2 plugin for normalizing sequences by 16S rRNA gene copy number (GCN) based on rrnDB database
 
 ### Introduction:
-This plugin normalizes sequences by 16S rRNA gene copy number (GCN) based on *rrn*DB database (version 5.6). The script matches the taxa of sequences with the ```rrnDB-5.6_pantaxa_stats_NCBI.tsv``` file, starting from the lowest rank. If a match is found, the mean of GCN for the taxon is assigned; if not, the script will try to match a higher rank until the highest rank is met. All the unassigned sequences are assumed to have one GCN.
+This plugin normalizes sequences by 16S rRNA gene copy number (GCN) based on *rrn*DB database (version 5.7). The script matches the taxa of sequences with the ```rrnDB-5.7_pantaxa_stats_NCBI.tsv``` file, starting from the lowest rank. If a match is found, the mean of GCN for the taxon is assigned; if not, the script will try to match a higher rank until the highest rank is met. All the unassigned sequences are assumed to have one GCN.
 
-Note that the **mean** column in the ```rrnDB-5.6_pantaxa_stats_NCBI.tsv``` is, according to the [*rrn*DB manual](https://rrndb.umms.med.umich.edu/help/), calculated from the means of the pan-taxa of immediate lower rank. Therefore, the mean of GCN might be different from the *rrn*db online search result. For example, the "mean" of GCN for bacteria is 2.02 in the downloading tsv file, whereas the mean of GCN for all the bacterial taxa is 5.0 if you search *rrn*DB online database.
+Note that the **mean** column might be different from the *rrn*db online search result. For example, the "mean" of GCN for bacteria is 2.02 in the ```rrnDB-5.6_pantaxa_stats_NCBI.tsv``` , whereas the mean of GCN for all the bacterial taxa is 5.0 if you search *rrn*DB online database (version 5.6). This is because the **mean** column in the .tsv file is, according to the [*rrn*DB manual](https://rrndb.umms.med.umich.edu/help/), calculated from the means of the pan-taxa of immediate lower rank. 
 
 ### Install guide:
 
-We assume you have a conda environment with the [QIIME 2 Core distribution](https://docs.qiime2.org/2019.10/install/) installed. First, activate the conda environment:
+We assume you have a conda environment with the [QIIME 2 Core distribution](https://docs.qiime2.org/2021.2/install/) installed. First, activate the conda environment:
 ```
-conda activate qiime2-2019.10
+conda activate name-of-your-qiime2-env
 ``` 
 
 Next, install ```q2-gcn-norm``` with the following command:
@@ -86,3 +86,13 @@ You may also want to compare the change in relative abundance using taxonomic ba
 <img src="https://imgur.com/AkTMmWn.jpg" width="600">
 
 Generally, the GCN normalization may not have a huge impact on your analysis results, but someone (e.g. reviewer or, in my case, supervisor) may ask you to do so. For more discussion about GCN normalization, check the [related topic](https://forum.qiime2.org/t/16s-copy-number-normalization/2575) in QIIME 2 forum.
+
+### Versions
+* 2021.04 - updated to *rrn*DB version 5.7
+* 2019.11.1 - first working version, *rrn*DB version 5.6
+* 2019.11 - didn't work :upside_down_face:
+
+### Citations
+Stoddard, S. F., Smith, B. J., Hein, R., Roller, B. R., & Schmidt, T. M. (2015). *rrn*DB: improved tools for interpreting rRNA gene abundance in bacteria and archaea and a new foundation for future development. _Nucleic acids research_, 43(Database issue), D593–D598. https://doi.org/10.1093/nar/gku1201
+
+Chen, M. Y., Chen, J. W., Wu, L. W., Huang, K. C., Chen, J. Y., Wu, W. S., Chiang, W. F., Shih, C. J., Tsai, K. N., Hsieh, W. T., Ho, Y. H., Wong, T. Y., Wu, J. H., & Chen, Y. L. (2021). Carcinogenesis of Male Oral Submucous Fibrosis Alters Salivary Microbiomes. _Journal of Dental Research_, 100(4), 397–405. https://doi.org/10.1177/0022034520968750
