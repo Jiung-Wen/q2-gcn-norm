@@ -9,7 +9,7 @@ citations = Citations.load('citations.bib', package='q2_gcn_norm')
 
 plugin = Plugin(
     name='gcn-norm',
-    version='2021.04',
+    version='2021.11',
     website='https://github.com/Jiung-Wen/q2-gcn-norm',
     package='q2_gcn_norm',
     description=('This QIIME 2 plugin normalizes sequences by 16S rRNA gene copy number (GCN) '

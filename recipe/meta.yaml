@@ -1,6 +1,6 @@
 package:
   name: q2-gcn-norm
-  version: 2021.04
+  version: 2021.11
 
 source:
   path: ../
@@ -10,11 +10,11 @@ build:
 
 requirements:
   host:
-    - python 3.6
+    - python 3.8
     - setuptools
 
   run:
-    - python 3.6
+    - python 3.8
     - pandas
     - qiime2
     - q2-types

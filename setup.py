@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="q2-gcn-norm",
-    version="2021.04",
+    version="2021.11",
     packages=find_packages(),
     author="Jiung-Wen Chen",
     author_email="jiung-wen.chen@wustl.edu",
